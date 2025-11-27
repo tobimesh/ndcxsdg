@@ -782,38 +782,39 @@
                 <!-- Dark Background Panel -->
                 <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:#2C3E50;z-index:1;"></div>
 
-                <!-- Centered White Card -->
-                <div class="cell small-12 medium-11 large-10" style="z-index:2;margin:2rem auto;">
-                    <div style="background:#ffffff;border:1px solid #E0E0E0;border-radius:6px;box-shadow:0 6px 16px rgba(0,0,0,0.12);padding:1.25rem;">
-                        <div class="grid-x grid-padding-x">
-                            <!-- Left narrative -->
-                            <div class="cell small-12 large-6" style="min-height:260px;display:flex;flex-direction:column;">
-                                <p style="font-size:0.95rem;color:#2C3E50;line-height:1.6;margin:0 0 1rem 0;">
-                                    Placeholder finance narrative. Summarize fiscal space, revenue composition, and debt profile. Replace with country-specific copy.
-                                </p>
-                                <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'; this.querySelector('.chev').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(180deg)';" style="margin-top:0.5rem;background:transparent;border:none;color:#2C3E50;font-weight:600;cursor:pointer;padding:0;display:flex;align-items:center;">
-                                    Show More
-                                    <svg class="chev" width="12" height="8" viewBox="0 0 12 8" style="margin-left:0.5rem;transition:transform 0.3s;" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 1L6 6L11 1" stroke="#E74C3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                                <div style="display:none;margin-top:0.75rem;">
-                                    <p style="margin:0;color:#666;line-height:1.6;">Additional placeholder finance details go here. Add notes on budget-to-GDP, debt sustainability, and comparative benchmarks.</p>
-                                </div>
-                            </div>
+                <!-- Content Area -->
+                <div class="cell small-12" style="padding:4rem 3rem;color:white;z-index:2;position:relative;">
+                    <div class="grid-x grid-padding-x">
+                        <!-- Left Column: Text with Show More -->
+                        <div class="cell small-12 medium-6 large-6" style="padding-right:2rem;">
+                            <p style="font-size:1rem;color:#FFFFFF;line-height:1.6;margin:0 0 1rem 0;">
+                                The radar diagram shows low frequency data points linked to government revenue, debt, and natural resources rents as a proportion of GDP. The financial indicator graphs show external debt servicing relative to revenue as well as the country's latest Debt Sustainability Assessment (DSA) risk rating (IMF; WB, 2024).
 
-                            <!-- Right charts placeholders -->
-                            <div class="cell small-12 large-6">
-                                <div style="background:#F7F7F7;border:1px solid #EAEAEA;border-radius:4px;padding:0.75rem;margin-bottom:1rem;">
-                                    <h5 style="margin:0 0 0.5rem 0;font-size:0.9rem;color:#2C3E50;">Low-frequency indicators</h5>
-                                    <div style="height:170px;background:repeating-linear-gradient(90deg,#f0f0f0, #f0f0f0 10px, #f9f9f9 10px, #f9f9f9 20px);border-radius:4px;"></div>
-                                </div>
-                                <div style="background:#F7F7F7;border:1px solid #EAEAEA;border-radius:4px;padding:0.75rem;">
-                                    <h5 style="margin:0 0 0.5rem 0;font-size:0.9rem;color:#2C3E50;">Financial indicators</h5>
-                                    <div style="height:160px;background:repeating-linear-gradient(0deg,#f0f0f0, #f0f0f0 10px, #f9f9f9 10px, #f9f9f9 20px);border-radius:4px;position:relative;"></div>
-                                    <p style="margin:0.5rem 0 0 0;font-size:0.75rem;color:#888;">Note: Placeholder charts. Replace with final visuals.</p>
-                                </div>
+                            </p>
+                            
+                            <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'; this.querySelector('.chevron').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(180deg)';" style="background:transparent;border:none;color:white;font-size:1rem;font-weight:600;cursor:pointer;padding:0.5rem 0;display:flex;align-items:center;">
+                                Show more 
+                                <svg class="chevron" width="12" height="8" viewBox="0 0 12 8" style="margin-left:0.5rem;transition:transform 0.3s;" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L6 6L11 1" stroke="#E74C3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            
+                            <div style="display:none;margin-top:1rem;">
+                                <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;">Cambodia's gross government debt was expected to reach 29.1% of GDP in 2025, significantly lower than the low-income developing countries (LIDC) average of 59.1%. The country is projected to collect revenue equivalent to 14.7% of GDP in 2025, or a third below the LIDC average of 21.8%.</p>
+                                <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;">Cambodia's public external debt servicing this year is expected to reach 11.0% of revenue, which is about a fifth below the LIDC average of 15.3%. According to the latest World Bank and IMF Debt Sustainability analysis (DSA) from December 2023 the country is rated as in 'low risk of debt distress'.</p>
+                                <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;">Cambodia is financially robust due to its moderate fiscal stance. The Kingdom only borrows for productive investments in infrastructure and is implementing a Revenue Mobilization Strategy 2019-2023 that ensures contributions to public spending.</p>
+                                <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;">Challenges such as high private and corporate debt levels and increasing exposure to climate-related shocks are impacting economic growth and resilience.</p>
+                                <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;">Cambodia has made progress in climate-related CSDGs, improving green infrastructure, water access, sanitation, and renewable energy. However, challenges persist in rural infrastructure, financing, urbanization, and waste management (VNR 2023).</p>
+                                <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0;">The average annual NDC financial needs are USD 781 million with an average annual gap of 49.8% (USD 357 million). Key sectors like forestry, energy, and waste remain underfunded. Mitigation accounts for most costs, with agriculture, infrastructure, and water resources receiving the majority of funding. Development partners provide 86.8% of funds, but private sector contributions remain low at 0.2%, indicating untapped investment opportunities (NDC 2.0 Financial Landscape Stocktake - Draft).</p>
                             </div>
+                        </div>
+
+                        <!-- Right Column: Images -->
+                        <div class="cell small-12 medium-6 large-6" style="padding-left:2rem;">
+                            <img src="../assets/dvfile/fs.png" alt="Finance indicators visualization" style="width:100%;height:auto;border-radius:4px;margin-bottom:1rem;">
+                            
+                            <!-- Caption text under image, on dark panel -->
+                            <p style="font-size:0.8rem;color:#B0B8C0;line-height:1.4;margin:0.5rem 0 0 0;font-style:italic;">Cambodia recently updated its GDP base year from 2000 to 2014. This rebasing revealed that the economy is approximately 35% larger than previously estimated. Consequently, figures relative to the new GDP represent a smaller proportion.</p>
                         </div>
                     </div>
                 </div>
@@ -841,7 +842,241 @@
             <div style="flex:1;background:#19486A"></div>
         </div>
 
-        <!-- Section 9: Explore other NDC x SDG Insights -->
+        <!-- Section 10: Public Finance -->
+        <section id="private-finance" class="grid-container" style="padding:3rem 0;">
+            <div class="grid-x grid-padding-x">
+                <!-- Left Column: Heading -->
+                <div class="cell small-12 medium-5 large-4">
+                    <h3 style="margin-top:0; font-weight:600;">Public Finance</h3>
+                </div>
+
+                <!-- Right Column: Content -->
+                <div class="cell small-12 medium-7 large-8">
+                    <p>Placeholder text for Public Finance. This section covers public sector investment, economic indicators, and opportunities for public finance in SDG and climate action.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SDG Divider (after Section 10) -->
+        <div class="sdg-divider" style="height:6px;display:flex;margin:0;">
+            <div style="flex:1;background:#E5243B"></div>
+            <div style="flex:1;background:#DDA63A"></div>
+            <div style="flex:1;background:#4C9F38"></div>
+            <div style="flex:1;background:#C5192D"></div>
+            <div style="flex:1;background:#FF3A21"></div>
+            <div style="flex:1;background:#26BDE2"></div>
+            <div style="flex:1;background:#FCC30B"></div>
+            <div style="flex:1;background:#A21942"></div>
+            <div style="flex:1;background:#FD6925"></div>
+            <div style="flex:1;background:#DD1367"></div>
+            <div style="flex:1;background:#FD9D24"></div>
+            <div style="flex:1;background:#BF8B2E"></div>
+            <div style="flex:1;background:#3F7E44"></div>
+            <div style="flex:1;background:#0A97D9"></div>
+            <div style="flex:1;background:#56C02B"></div>
+            <div style="flex:1;background:#00689D"></div>
+            <div style="flex:1;background:#19486A"></div>
+        </div>
+
+        <!-- Section 11: Explore other NDC x SDG Insights -->
+        <section id="public-finance" class="grid-container full" style="padding:0;max-width:100%;">
+            <div class="grid-x grid-padding-x" style="position:relative;">
+                <!-- Dark Background Panel -->
+                <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:#2C3E50;z-index:1;"></div>
+
+                <!-- Content Area -->
+                <div class="cell small-12" style="padding:4rem 3rem;color:white;z-index:2;position:relative;">
+                    <div class="grid-x grid-padding-x">
+                        <!-- Left Column: Content -->
+                        <div class="cell small-12 medium-6 large-6" style="padding-right:2rem;">
+                                <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">Financing needs</h4>
+                                <div style="border-left:4px solid #4A90E2;padding-left:1.5rem;margin-bottom:1.5rem;">
+                                    <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;"><strong>SDGs:</strong> The additional annual costs required to achieve the SDGs in Cambodia, The cumulative value of this estimated gap is approximately USD 18 billion per year.</p>
+                                    <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0;"><strong>NDC:</strong> Estimated 7.7 billion USD total by 2030</p>
+                                    <ul style="color:white;font-size:0.95rem;line-height:1.6;margin:0.5rem 0 0 1.5rem;padding:0;">
+                                        <li>5.7 billion USD for mitigation</li>
+                                        <li>2 billion USD for adaptation</li>
+                                    </ul>
+                                </div>
+
+                            <div style="margin-bottom:4rem;">
+                                <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">Financing strategy</h4>
+                                <div style="border-left:4px solid #4A90E2;padding-left:1.5rem;">
+                                    <p style="color:white;font-size:0.95rem;line-height:1.6;margin:0 0 1rem 0;">Financing strategy under development for Pentagon Strategy and NDCs to achieve:</p>
+                                    <ul style="color:white;font-size:0.95rem;line-height:1.6;margin:0;padding:0 0 0 1.5rem;">
+                                        <li>CSDGs and High-Income Status by 2050</li>
+                                        <li>LT-LEDS / Carbon Neutrality by 2050</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <p style="font-size:0.75rem;color:#B0B8C0;font-style:italic;margin:0;">Sources: Financing Needs for SDGs data from National Financing Policy Framework (2nd Draft, June 2024)</p>
+                        </div>
+
+                        <!-- Right Column: Content -->
+                        <div class="cell small-12 medium-6 large-6" style="padding-left:2rem;">
+                            <div style="margin-bottom:2rem;">
+                                <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">Expenditures & budgets</h4>
+                                <ul style="color:white;font-size:0.95rem;line-height:1.6;margin:0;padding:0 0 0 1.5rem;">
+                                    <li>Climate expenditure budgeted (focus on vulnerable households)</li>
+                                    <li>Investment in forest protection to curb emissions</li>
+                                    <li>Phase out of fossil fuel subsidies by 2030 (currently 3.2% of GDP)</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom:2rem;">
+                                <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">Debt instruments</h4>
+                                <ul style="color:white;font-size:0.95rem;line-height:1.6;margin:0;padding:0 0 0 1.5rem;">
+                                    <li>In November 2023, the Government endorsed the "Policy Framework on the Development of Government Securities 2023 – 2028" aiming to establish a well-functioning government securities market.</li>
+                                    <li>Although sovereign thematic bond issuance is not expected soon, the groundwork laid by development partners for the Cambodian Government, through studies, capacity-building efforts, and technical assistant, has created the conditions needed to move forward.</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom:0;">
+                                <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">International climate finance</h4>
+                                <ul style="color:white;font-size:0.95rem;line-height:1.6;margin:0;padding:0 0 0 1.5rem;">
+                                    <li>GCF: Over 245 million total to date</li>
+                                    <li>GEF: Approx. 18 million total for climate change to date (GEF4-8)</li>
+                                    <li>Adaptation Fund: Approx. 20 million total to date</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SDG Divider (after Section 11) -->
+        <div class="sdg-divider" style="height:6px;display:flex;margin:0;">
+            <div style="flex:1;background:#E5243B"></div>
+            <div style="flex:1;background:#DDA63A"></div>
+            <div style="flex:1;background:#4C9F38"></div>
+            <div style="flex:1;background:#C5192D"></div>
+            <div style="flex:1;background:#FF3A21"></div>
+            <div style="flex:1;background:#26BDE2"></div>
+            <div style="flex:1;background:#FCC30B"></div>
+            <div style="flex:1;background:#A21942"></div>
+            <div style="flex:1;background:#FD6925"></div>
+            <div style="flex:1;background:#DD1367"></div>
+            <div style="flex:1;background:#FD9D24"></div>
+            <div style="flex:1;background:#BF8B2E"></div>
+            <div style="flex:1;background:#3F7E44"></div>
+            <div style="flex:1;background:#0A97D9"></div>
+            <div style="flex:1;background:#56C02B"></div>
+            <div style="flex:1;background:#00689D"></div>
+            <div style="flex:1;background:#19486A"></div>
+        </div>
+
+        <!-- Section 12: Private Finance & Economy -->
+        <section id="private-finance" class="grid-container" style="padding:3rem 0;">
+            <div class="grid-x grid-padding-x">
+                <!-- Left Column: Heading -->
+                <div class="cell small-12 medium-5 large-4">
+                    <h3 style="margin-top:0; font-weight:600;">Private Finance & Economy</h3>
+                </div>
+
+                <!-- Right Column: Content -->
+                <div class="cell small-12 medium-7 large-8">
+                    <p>Placeholder text for Private Finance & Economy. This section covers private sector investment, economic indicators, and opportunities for private finance in SDG and climate action.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SDG Divider (after Section 12) -->
+        <div class="sdg-divider" style="height:6px;display:flex;margin:0;">
+            <div style="flex:1;background:#E5243B"></div>
+            <div style="flex:1;background:#DDA63A"></div>
+            <div style="flex:1;background:#4C9F38"></div>
+            <div style="flex:1;background:#C5192D"></div>
+            <div style="flex:1;background:#FF3A21"></div>
+            <div style="flex:1;background:#26BDE2"></div>
+            <div style="flex:1;background:#FCC30B"></div>
+            <div style="flex:1;background:#A21942"></div>
+            <div style="flex:1;background:#FD6925"></div>
+            <div style="flex:1;background:#DD1367"></div>
+            <div style="flex:1;background:#FD9D24"></div>
+            <div style="flex:1;background:#BF8B2E"></div>
+            <div style="flex:1;background:#3F7E44"></div>
+            <div style="flex:1;background:#0A97D9"></div>
+            <div style="flex:1;background:#56C02B"></div>
+            <div style="flex:1;background:#00689D"></div>
+            <div style="flex:1;background:#19486A"></div>
+        </div>
+
+        <!-- Section 13: Dark Panel -->
+        <section id="dark-panel-section" class="grid-container full" style="padding:0;max-width:100%;">
+            <div class="grid-x grid-padding-x" style="position:relative;">
+                <!-- Dark Background Panel -->
+                <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:#2C3E50;z-index:1;"></div>
+
+                <!-- Content Area -->
+                <div class="cell small-12" style="padding:4rem 3rem;color:white;z-index:2;position:relative;">
+                    <div class="grid-x grid-padding-x">
+                        <!-- Left Column -->
+                        <div class="cell small-12 medium-6 large-6" style="padding-right:2rem;">
+                            <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1.5rem 0;">Policy & Regulatory Measures:</h4>
+                            <img src="../assets/dvfile/prm.png" alt="Policy & Regulatory Measures" style="width:100%;height:auto;border-radius:4px;">
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="cell small-12 medium-6 large-6" style="padding-left:2rem;">
+                            <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">Innovative Instruments:</h4>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1rem 0;">While Cambodia's first thematic bond issuance is not expected soon, development partners including UNDP has laid the groundwork through studies, capacity-building, and expert consultations.</p>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1rem 0;">Cambodia has launched several blended finance initiatives to promote sustainable development. The Clean Energy Revolving Fund offers loans to farmers for clean energy technology adoption. The WASH sector explores private investment alongside public funds for improved water and sanitation. The Investment Support Facility for Post-Harvest Fisheries by UNIDO and CGCC, co-funded by the EU, aims in financing to boost fisheries productivity. And the Sustainable Green Financing Facility, launched in October 2024 by CGCC and UNDP, supports green projects through a public-private funding mix.</p>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1.5rem 0;">However, limitations remain, including low private sector participation, regulatory challenges, and capacity constraints in structuring and managing blended finance mechanisms. Ensuring long-term success will require stronger policy frameworks, incentives for private investment, and improved coordination among stakeholders.</p>
+
+                            <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">International Investment:</h4>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1.5rem 0;">Foreign Direct Investment accounts for 46.46 per cent of the approved 186 investment projects in 2022. Major foreign investors came from China, Thailand and Japan.</p>
+
+                            <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">Domestic Investment:</h4>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1.5rem 0;">Local investment accounts for 53.54 per cent of the approved 186 investment projects in 2022.</p>
+
+                            <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1rem 0;">SDG Investor Map</h4>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1rem 0;"><strong>15 Investment Opportunity Areas (IOAs)</strong> that contribute to the government's NDC priorities and meet SDG needs.</p>
+                            <p style="color:white;font-size:0.9rem;line-height:1.6;margin:0 0 1rem 0;">The priority IOAs span <strong>4 climate adaptation-relevant sectors</strong> in Cambodia:</p>
+                            
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin:0;">
+                                <div style="background:#0A97D9;padding:1rem;text-align:center;border-radius:4px;">
+                                    <p style="color:white;font-size:0.85rem;font-weight:600;margin:0;line-height:1.3;">RENEWABLE RESOURCES AND ENERGY</p>
+                                </div>
+                                <div style="background:#0A97D9;padding:1rem;text-align:center;border-radius:4px;">
+                                    <p style="color:white;font-size:0.85rem;font-weight:600;margin:0;line-height:1.3;">INFRASTRUCTURE</p>
+                                </div>
+                                <div style="background:#0A97D9;padding:1rem;text-align:center;border-radius:4px;">
+                                    <p style="color:white;font-size:0.85rem;font-weight:600;margin:0;line-height:1.3;">FOOD AND AGRICULTURE</p>
+                                </div>
+                                <div style="background:#0A97D9;padding:1rem;text-align:center;border-radius:4px;">
+                                    <p style="color:white;font-size:0.85rem;font-weight:600;margin:0;line-height:1.3;">HEALTHCARE</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SDG Divider (after Section 13) -->
+        <div class="sdg-divider" style="height:6px;display:flex;margin:0;">
+            <div style="flex:1;background:#E5243B"></div>
+            <div style="flex:1;background:#DDA63A"></div>
+            <div style="flex:1;background:#4C9F38"></div>
+            <div style="flex:1;background:#C5192D"></div>
+            <div style="flex:1;background:#FF3A21"></div>
+            <div style="flex:1;background:#26BDE2"></div>
+            <div style="flex:1;background:#FCC30B"></div>
+            <div style="flex:1;background:#A21942"></div>
+            <div style="flex:1;background:#FD6925"></div>
+            <div style="flex:1;background:#DD1367"></div>
+            <div style="flex:1;background:#FD9D24"></div>
+            <div style="flex:1;background:#BF8B2E"></div>
+            <div style="flex:1;background:#3F7E44"></div>
+            <div style="flex:1;background:#0A97D9"></div>
+            <div style="flex:1;background:#56C02B"></div>
+            <div style="flex:1;background:#00689D"></div>
+            <div style="flex:1;background:#19486A"></div>
+        </div>
+
+        <!-- Section 14: Explore other NDC x SDG Insights -->
         <!-- Section 9a: Development Breakthrough Policy Brief -->
         <section id="policy-brief" class="grid-container" style="padding:5rem 4rem;">
             <div class="grid-x grid-padding-x" style="align-items:stretch;">
