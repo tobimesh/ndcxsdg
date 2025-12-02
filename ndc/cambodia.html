@@ -54,6 +54,10 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
     <script src="../assets/js/lottie-player.js"></script>
     
+    <!-- UNDP Visualization Stylesheets -->
+    <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/mainStyleSheet.css" />
+    <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraphingInterface.css" />
+    <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraph.css" />
     
     <script>
         (function (w, d, s, l, i) {
@@ -288,10 +292,10 @@
                 </div>
 
                 <!-- Right Column: Data Cards (overlaying dark panel) -->
-                <div class="cell small-12 medium-12 large-5 large-offset-1" style="z-index:3;position:relative;margin-top:2rem;">
-                    <!-- White card with moment image -->
-                    <div style="background:white;padding:2rem;border:1px solid #E0E0E0;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-                        <img src="../assets/dvfile/moment.png" alt="NDC x SDG Moment visualization" style="width:100%;height:auto;display:block;" />
+                <div class="cell small-12 medium-12 large-5 large-offset-1" style="z-index:3;position:relative;margin-top:2rem;max-width:fit-content;">
+                    <!-- White card with interactive visualization -->
+                    <div style="background:white;padding:2rem;border:1px solid #E0E0E0;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);overflow:hidden;height:750px;">
+                        <iframe src="http://localhost:5173" style="width:200%;height:1500px;border:none;transform:scale(0.5);transform-origin:top left;" scrolling="no" title="NDC x SDG Moment visualization"></iframe>
                     </div>
                     
                     <!-- Caption directly under image, on dark panel -->
