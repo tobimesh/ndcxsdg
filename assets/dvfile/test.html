@@ -2,12 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Embed Test</title>
-  <script defer="defer" type="module" src="https://viz-tool.data.undp.org/index.js"></script>
-  <link rel="stylesheet" href="https://viz-tool.data.undp.org/style.css" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.typekit.net/jtg8msg.css" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Chart - Cambodia Embed Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0468B1;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div class="flourish-embed flourish-bubble-chart" data-src="visualisation/22320282"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/22320282/thumbnail" width="100%" alt="bubble-chart visualization" /></noscript></div>
+  <div class="container">
+    <h1>Bubble Chart - Cambodia Embed Test</h1>
+    
+    <iframe 
+      src="http://localhost:5173/?dataURL=https%3A%2F%2Fraw.githubusercontent.com%2Fandreykrachkov%2Fndcxsdgdata%2Frefs%2Fheads%2Fmain%2Fnationalpriorities%2Fkhm_ndc_rescaled.json&embed=true"
+      width="100%" 
+      height="600" 
+      frameborder="0"
+      style="border: none;"
+    ></iframe>
+  </div>
 </body>
 </html>

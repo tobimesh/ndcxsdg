@@ -1,0 +1,343 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { H5 } from '@undp-data/undp-design-system-react';
+import '@undp-data/undp-design-system-react/dist/style.css';
+import {
+  fetchAndParseCSV,
+  SingleGraphDashboard,
+} from '@undp-data/undp-visualization-library';
+import './style.css';
+import { useEffect, useState } from 'react';
+
+function App() {
+  const [data, setData] = useState<any[]>([]);
+  // Read country from data-country attribute or window variable, fallback to Cambodia
+  const selectedCountry = 
+    document.getElementById('root')?.getAttribute('data-country') || 
+    (window as any).COUNTRY_NAME || 
+    'Cambodia';
+  const [selectedData, setSelectedData] = useState<any>(null);
+
+  // Fetch data and add "highlight" column initially
+  useEffect(() => {
+    fetchAndParseCSV(`./data.csv`).then((parsedData: any) => {
+      const updatedData = parsedData.map((d: any) => ({
+        ...d,
+        highlight: d.country === selectedCountry ? 'Highlighted' : 'Not',
+      }));
+      setData(updatedData);
+    });
+  }, [selectedCountry]);
+
+  // Update selectedData when selectedCountry changes
+  useEffect(() => {
+    if (data.length > 0) {
+      const countryData = data.find(d => d.country === selectedCountry);
+      setSelectedData(countryData || null);
+    }
+  }, [selectedCountry, data]);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      setData(prevData =>
+        prevData.map(d => ({
+          ...d,
+          highlight: d.country === selectedCountry ? 'Highlighted' : 'Not',
+        })),
+      );
+    }
+  }, [selectedCountry]);
+
+  return (
+    <div
+      className='m-auto p-10'
+      style={{
+        maxWidth: '1200px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'flex-start',
+      }}
+    >
+      <div id='chartContainer'>
+        <div
+          id='chart'
+          style={{
+            padding: '2rem 1.5rem',
+          }}
+        >
+          <H5>Human Development</H5>
+          <div className='chartContainer'>
+            <SingleGraphDashboard
+              dataSettings={{
+                data,
+                fileType: 'json',
+              }}
+              graphType='verticalBarChart'
+              dataFilters={[
+                {
+                  column: 'Human Development Index (2023)',
+                  excludeValues: ['NA'],
+                },
+              ]}
+              graphDataConfiguration={[
+                { columnId: 'country', chartConfigId: 'label' },
+                { columnId: 'highlight', chartConfigId: 'color' },
+                {
+                  columnId: 'Human Development Index (2023)',
+                  chartConfigId: 'size',
+                },
+              ]}
+              graphSettings={{
+                graphTitle: `{{{<p class='undp-typography'>Human Development Index (2023)</p><div style="color: var(--blue-600); font-weight: 700; font-size: 24px;">${selectedData?.['Human Development Index (2023)']}</div>}}}`,
+                showValues: false,
+                sortData: 'asc',
+                height: 100,
+                colorDomain: ['Highlighted', 'Not'],
+                colors: ['var(--blue-600)', 'var(--gray-400)'],
+                showColorScale: false,
+                maxValue: 1,
+                showTicks: false,
+                showLabels: false,
+                topMargin: 0,
+              }}
+            />
+          </div>
+          <H5 className='mt-9'>Climate Impact and Adaptation</H5>
+          <div>
+            {selectedData && typeof selectedData === 'object' ? (
+              (() => {
+                const values = [
+                  Number(selectedData['INFORM_Historical (2022)']),
+                  Number(selectedData['INFORM_RCP4.5/SSP1 (2050)']),
+                  Number(selectedData['INFORM_RCP8.5/SSP3 (2050)']),
+                ].filter(val => !Number.isNaN(val));
+
+                const maxValue =
+                  values.length > 0 ? Math.max(...values) + 0.02 : undefined;
+                const minValue =
+                  values.length > 0 ? Math.min(...values) - 0.02 : undefined;
+
+                return (
+                  <SingleGraphDashboard
+                    debugMode
+                    dataSettings={{
+                      data: [selectedData],
+                      fileType: 'json',
+                    }}
+                    graphType='horizontalDumbbellChart'
+                    graphDataConfiguration={[
+                      { columnId: 'country', chartConfigId: 'label' },
+                      {
+                        columnId: [
+                          'INFORM_Historical (2022)',
+                          'INFORM_RCP4.5/SSP1 (2050)',
+                          'INFORM_RCP8.5/SSP3 (2050)',
+                        ],
+                        chartConfigId: 'x',
+                      },
+                    ]}
+                    graphSettings={{
+                      graphTitle: `{{{<p class='undp-typography'>INFORM Climate Change Risk Index</p>}}}`,
+                      showValues: true,
+                      height: 100,
+                      radius: 6,
+                      leftMargin: 0,
+                      rightMargin: 0,
+                      showTicks: false,
+                      showLabels: false,
+                      showColorScale: false,
+                      topMargin: 0,
+                      colorDomain: [
+                        'Historical (2022)',
+                        'RCP 4.5 SSP 1 (2050)',
+                        'RCP 8.5 SSP 3 (2050)',
+                      ],
+                      colors: ['#0468B1', '#E78625', '#E0529F'],
+                      maxPositionValue: maxValue,
+                      minPositionValue: minValue,
+                    }}
+                  />
+                );
+              })()
+            ) : (
+              <p className='undp-typography label' style={{ color: 'red' }}>
+                No valid data available for the selected country.
+              </p>
+            )}
+          </div>
+          <div className='chartContainer'>
+            <SingleGraphDashboard
+              dataSettings={{
+                data,
+                fileType: 'json',
+              }}
+              graphType='verticalBarChart'
+              dataFilters={[
+                {
+                  column: 'IMF-Adapted ND-GAIN (2021)',
+                  excludeValues: ['NA'],
+                },
+              ]}
+              graphDataConfiguration={[
+                { columnId: 'country', chartConfigId: 'label' },
+                { columnId: 'highlight', chartConfigId: 'color' },
+                {
+                  columnId: 'IMF-Adapted ND-GAIN (2021)',
+                  chartConfigId: 'size',
+                },
+              ]}
+              graphSettings={{
+                graphTitle: `{{{<p class='undp-typography'>IMF-Adapted ND-GAIN (2021)</p><div style="color: var(--blue-600); font-weight: 700; font-size: 24px;">${selectedData?.['IMF-Adapted ND-GAIN (2021)']}</div>}}}`,
+                showValues: false,
+                sortData: 'asc',
+                height: 100,
+                colorDomain: ['Highlighted', 'Not'],
+                colors: ['var(--blue-600)', 'var(--gray-400)'],
+                showColorScale: false,
+                maxValue: 1,
+                showTicks: false,
+                showLabels: false,
+                topMargin: 0,
+              }}
+            />
+          </div>
+          <H5 className='mt-9'>Mitigation</H5>
+          <div className='chartContainer'>
+            <SingleGraphDashboard
+              dataSettings={{
+                data,
+                fileType: 'json',
+              }}
+              graphType='verticalBarChart'
+              dataFilters={[
+                {
+                  column:
+                    'Greenhouse gas (GHG) growth rate adjusted by emissions intensity',
+                  excludeValues: ['NA'],
+                },
+              ]}
+              graphDataConfiguration={[
+                { columnId: 'country', chartConfigId: 'label' },
+                { columnId: 'highlight', chartConfigId: 'color' },
+                {
+                  columnId:
+                    'Greenhouse gas (GHG) growth rate adjusted by emissions intensity',
+                  chartConfigId: 'size',
+                },
+              ]}
+              graphSettings={{
+                graphTitle: `{{{<p class='undp-typography'>Greenhouse gas (GHG) growth rate adjusted by emissions intensity</p><div style="color: var(--blue-600); font-weight: 700; font-size: 24px;">${selectedData?.['Greenhouse gas (GHG) growth rate adjusted by emissions intensity']}</div>}}}`,
+                showValues: false,
+                sortData: 'asc',
+                height: 100,
+                showTicks: false,
+                showLabels: false,
+                topMargin: 0,
+                colorDomain: ['Highlighted', 'Not'],
+                colors: ['var(--blue-600)', 'var(--gray-400)'],
+                showColorScale: false,
+              }}
+            />
+          </div>
+          <div className='chartContainer'>
+            <SingleGraphDashboard
+              dataSettings={{
+                data,
+                fileType: 'json',
+              }}
+              graphType='verticalBarChart'
+              dataFilters={[
+                {
+                  column: 'Projected GHG Emissions in 2050',
+                  excludeValues: ['NA'],
+                },
+              ]}
+              graphDataConfiguration={[
+                { columnId: 'country', chartConfigId: 'label' },
+                { columnId: 'highlight', chartConfigId: 'color' },
+                {
+                  columnId: 'Projected GHG Emissions in 2050',
+                  chartConfigId: 'size',
+                },
+              ]}
+              graphSettings={{
+                graphTitle: `{{{<p class='undp-typography'>Projected GHG Emissions in 2050</p><div style="color: var(--blue-600); font-weight: 700; font-size: 24px;">${selectedData?.['Projected GHG Emissions in 2050']}</div>}}}`,
+                showValues: false,
+                sortData: 'asc',
+                height: 100,
+                showTicks: false,
+                showLabels: false,
+                topMargin: 0,
+                colorDomain: ['Highlighted', 'Not'],
+                colors: ['var(--blue-600)', 'var(--gray-400)'],
+                showColorScale: false,
+              }}
+            />
+          </div>
+          <H5 className='mt-9'>Biodiversity</H5>
+          <div>
+            {selectedData && typeof selectedData === 'object' ? (
+              (() => {
+                const values = [
+                  Number(selectedData['BII_Historical (2014)']),
+                  Number(selectedData['BII_RCP 2.6 SSP 1 (2050)']),
+                  Number(selectedData['BII_RCP 7.0 SSP 3 (2050)']),
+                ].filter(val => !Number.isNaN(val));
+
+                const maxValue =
+                  values.length > 0 ? Math.max(...values) + 0.02 : undefined;
+                const minValue =
+                  values.length > 0 ? Math.min(...values) - 0.02 : undefined;
+                return (
+                  <SingleGraphDashboard
+                    debugMode
+                    dataSettings={{
+                      data: [selectedData],
+                      fileType: 'json',
+                    }}
+                    graphType='horizontalDumbbellChart'
+                    graphDataConfiguration={[
+                      { columnId: 'country', chartConfigId: 'label' },
+                      {
+                        columnId: [
+                          'BII_Historical (2014)',
+                          'BII_RCP 2.6 SSP 1 (2050)',
+                          'BII_RCP 7.0 SSP 3 (2050)',
+                        ],
+                        chartConfigId: 'x',
+                      },
+                    ]}
+                    graphSettings={{
+                      graphTitle: `{{{<p class='undp-typography'>Biodiversity Intactness Index</p>}}}`,
+                      showValues: true,
+                      height: 100,
+                      radius: 6,
+                      leftMargin: 0,
+                      rightMargin: 0,
+                      showTicks: false,
+                      showLabels: false,
+                      topMargin: 0,
+                      colorDomain: [
+                        'Historical (2014)',
+                        'RCP 2.6 SSP 1 (2050)',
+                        'RCP 7.0 SSP 3 (2050)',
+                      ],
+                      colors: ['#0468B1', '#E78625', '#E0529F'],
+                      maxPositionValue: maxValue,
+                      minPositionValue: minValue,
+                    }}
+                  />
+                );
+              })()
+            ) : (
+              <p className='undp-typography label' style={{ color: 'red' }}>
+                No valid data available for the selected country.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
