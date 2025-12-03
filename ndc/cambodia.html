@@ -55,10 +55,8 @@
     <script src="../assets/js/lottie-player.js"></script>
     
     <!-- UNDP Visualization Stylesheets -->
-    <link rel="stylesheet" href="https://agreeable-river-0968ad903.4.azurestaticapps.net/style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/jtg8msg.css" />
     <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/mainStyleSheet.css" />
-    <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraphingInterface.css" />
-    <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraph.css" />
     
     <script>
         (function (w, d, s, l, i) {
@@ -293,12 +291,17 @@
                 </div>
 
                 <!-- Right Column: Data Cards (overlaying dark panel) -->
-                <div class="cell small-12 medium-12 large-5 large-offset-1" style="z-index:3;position:relative;margin-top:2rem;max-width:fit-content;">
+                <div class="cell small-12 medium-12 large-5 large-offset-1" style="z-index:3;position:relative;margin-top:2rem;">
                     <!-- White card with interactive visualization -->
-                    <div style="background:white;padding:2rem;border:1px solid #E0E0E0;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);overflow:hidden;height:750px;">
-                        <div style="width:200%;height:1500px;transform:scale(0.5);transform-origin:top left;">
-                            <div id="root" data-country="KHM"></div>
-                        </div>
+                    <div style="background:white;padding:0;border:1px solid #E0E0E0;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);overflow:hidden;height:750px;">
+                        <iframe 
+                            src="http://localhost:5174?country=Cambodia"
+                            width="100%" 
+                            height="1800" 
+                            frameborder="0"
+                            scrolling="no"
+                            style="border: none; transform: scale(0.5); transform-origin: 0 0; width: 200%;"
+                        ></iframe>
                     </div>
                     
                     <!-- Caption directly under image, on dark panel -->
@@ -1677,12 +1680,7 @@
     </script>
     
     <!-- UNDP Visualization Module Script -->
-    <script defer="defer" type="module" src="https://agreeable-river-0968ad903.4.azurestaticapps.net/index.js?country=KHM"></script>
-    <script>
-        // Pass country code to the visualization app
-        window.COUNTRY_CODE = 'KHM';
-        window.COUNTRY_NAME = 'Cambodia';
-    </script>
+    <script type="module" src="http://localhost:5174/src/main.tsx"></script>
 
 </body>
 
