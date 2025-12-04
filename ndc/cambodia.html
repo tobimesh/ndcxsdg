@@ -57,6 +57,50 @@
     <!-- UNDP Visualization Stylesheets -->
     <link rel="stylesheet" href="https://use.typekit.net/jtg8msg.css" />
     <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/mainStyleSheet.css" />
+    <link rel="stylesheet" href="https://viz-tool.data.undp.org/style.css" crossorigin="anonymous" />
+    
+    <style>
+        /* Fix UNDP tooltip text wrapping */
+        .undp-viz-tooltip,
+        [class*="tooltip"],
+        .undp-div-tool-graph-embed [role="tooltip"],
+        .undp-div-tool-graph-embed div[style*="position: absolute"] {
+            white-space: normal !important;
+            max-width: 300px !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+        }
+        
+        /* Target the specific tooltip container */
+        .undp-div-tool-graph-embed > div > div[style*="pointer-events"] {
+            white-space: normal !important;
+            max-width: 300px !important;
+        }
+        
+        /* More aggressive targeting for all divs inside the embed */
+        .undp-div-tool-graph-embed * {
+            white-space: normal !important;
+        }
+        
+        .undp-div-tool-graph-embed div[style*="z-index"] {
+            max-width: 300px !important;
+            word-wrap: break-word !important;
+        }
+        
+        /* Target SVG text elements in tooltips */
+        .undp-div-tool-graph-embed svg text[title] {
+            white-space: normal !important;
+        }
+        
+        .undp-div-tool-graph-embed svg rect[title="Sharing"] {
+            width: 300px !important;
+        }
+        
+        /* Target the tooltip background rect */
+        .undp-div-tool-graph-embed g[transform*="translate"] rect[fill-opacity="1"] {
+            width: 300px !important;
+        }
+    </style>
     
     <script>
         (function (w, d, s, l, i) {
@@ -403,7 +447,7 @@
                             <h4 style="color:#ffffff;font-weight:700;margin-bottom:1.5rem;font-size:1.1rem;">NATIONAL DEVELOPMENT PLAN(S) (NDP)</h4>
                             <div style="background:#FFFFFF;padding:0;border-radius:8px;height:400px;border:1px solid #E0E0E0;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;position:relative;">
                                 <iframe 
-                                    src="http://localhost:5173/?dataURL=https%3A%2F%2Fraw.githubusercontent.com%2Fandreykrachkov%2Fndcxsdgdata%2Frefs%2Fheads%2Fmain%2Fnational-development-plans%2Fcol_ndp.json&embed=true"
+                                    src="http://localhost:5173/?dataURL=https%3A%2F%2Fraw.githubusercontent.com%2Fandreykrachkov%2Fndcxsdgdata%2Frefs%2Fheads%2Fmain%2Fnational-development-plans%2Fkhm_ndp.json&embed=true"
                                     width="100%" 
                                     height="700" 
                                     frameborder="0"
@@ -1349,16 +1393,26 @@
         <!-- Section 13: Dark Panel -->
         <section id="dark-panel-section" class="grid-container full" style="padding:0;max-width:100%;">
             <div class="grid-x grid-padding-x" style="position:relative;">
-                <!-- Dark Background Panel -->
-                <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:#2C3E50;z-index:1;"></div>
+                <!-- Split Background: White Left, Dark Right -->
+                <div style="position:absolute;top:0;left:0;width:50%;bottom:0;background:white;z-index:1;"></div>
+                <div style="position:absolute;top:0;right:0;width:50%;bottom:0;background:#2C3E50;z-index:1;"></div>
 
                 <!-- Content Area -->
-                <div class="cell small-12" style="padding:4rem 3rem;color:white;z-index:2;position:relative;">
+                <div class="cell small-12" style="padding:4rem 3rem;z-index:2;position:relative;">
                     <div class="grid-x grid-padding-x">
                         <!-- Left Column -->
                         <div class="cell small-12 medium-6 large-6" style="padding-right:2rem;">
-                            <h4 style="color:white;font-weight:600;font-size:1.1rem;margin:0 0 1.5rem 0;">Policy & Regulatory Measures:</h4>
-                            <img src="../assets/dvfile/prm.png" alt="Policy & Regulatory Measures" style="width:100%;height:auto;border-radius:4px;">
+                            <h4 style="color:#2C3E50;font-weight:600;font-size:1.1rem;margin:0 0 1.5rem 0;">Policy & Regulatory Measures:</h4>
+                            <div style="width:100%;height:600px;border-radius:4px;">
+                                <iframe 
+                                    src="../assets/dvfile/prm-embed.html" 
+                                    width="100%" 
+                                    height="600" 
+                                    frameborder="0"
+                                    scrolling="no"
+                                    style="border: none;"
+                                ></iframe>
+                            </div>
                         </div>
 
                         <!-- Right Column -->
@@ -1679,8 +1733,54 @@
         });
     </script>
     
-    <!-- UNDP Visualization Module Script -->
-    <script type="module" src="http://localhost:5174/src/main.tsx"></script>
+    <!-- UNDP Visualization Scripts -->
+    <script defer="defer" type="module" src="https://viz-tool.data.undp.org/index.js"></script>
+    
+    <script>
+        // Fix UNDP tooltip wrapping after embed loads
+        setTimeout(function() {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === 1) {
+                            // Target SVG tooltip rectangles and limit width
+                            if (node.tagName === 'rect' && node.getAttribute('title') === 'Sharing') {
+                                node.setAttribute('width', '300');
+                            }
+                            // Target any tooltip-like elements
+                            const style = node.getAttribute('style');
+                            if (style && (style.includes('position: absolute') || style.includes('pointer-events'))) {
+                                node.style.whiteSpace = 'normal';
+                                node.style.maxWidth = '300px';
+                                node.style.wordWrap = 'break-word';
+                            }
+                        }
+                    });
+                    
+                    // Also check for attribute changes on existing nodes
+                    if (mutation.type === 'attributes' && mutation.target.tagName === 'rect') {
+                        const rect = mutation.target;
+                        if (rect.getAttribute('title') === 'Sharing') {
+                            const width = parseFloat(rect.getAttribute('width'));
+                            if (width > 300) {
+                                rect.setAttribute('width', '300');
+                            }
+                        }
+                    }
+                });
+            });
+            
+            const embedContainer = document.querySelector('.undp-div-tool-graph-embed');
+            if (embedContainer) {
+                observer.observe(embedContainer, { 
+                    childList: true, 
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['width', 'style']
+                });
+            }
+        }, 1000);
+    </script>
 
 </body>
 
